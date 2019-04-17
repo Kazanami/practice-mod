@@ -128,7 +128,13 @@ public class shop_kazanami {
                 "   ",
                 'I', new ItemStack(Items.IRON_INGOT)
         );
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE, 20), new ItemStack(Blocks.IRON_BLOCK, 2));
+        GameRegistry.addRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE, 20),
+                "B  ",
+                "B  ",
+                "   ",
+                'B', new ItemStack(Blocks.IRON_BLOCK)
+        );
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.IRON_INGOT, 3), new ItemStack(Items.BUCKET));
 
         proxy.postInit(event);
     }
