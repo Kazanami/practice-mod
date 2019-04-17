@@ -122,9 +122,10 @@ public class shop_kazanami {
 
 
         /*最後に読み込ませる 鉄インゴット3から経験値瓶3*/
+        //GameRegistry.addShapelessRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE,3), new ItemStack(Items.IRON_INGOT,3));
         GameRegistry.addRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE, 3),
                 " I ",
-                "III",
+                "I I",
                 "   ",
                 'I', new ItemStack(Items.IRON_INGOT)
         );
@@ -134,12 +135,28 @@ public class shop_kazanami {
                 "   ",
                 'B', new ItemStack(Blocks.IRON_BLOCK)
         );
+
+        /*鉄防具 還元レシピ*/
         GameRegistry.addShapelessRecipe(new ItemStack(Items.IRON_INGOT, 3), new ItemStack(Items.BUCKET));
         GameRegistry.addShapelessRecipe(new ItemStack(Items.IRON_INGOT, 5), new ItemStack(Items.IRON_HELMET));
         GameRegistry.addShapelessRecipe(new ItemStack(Items.IRON_INGOT, 8), new ItemStack(Items.IRON_CHESTPLATE));
         GameRegistry.addShapelessRecipe(new ItemStack(Items.IRON_INGOT, 7), new ItemStack(Items.IRON_LEGGINGS));
         GameRegistry.addShapelessRecipe(new ItemStack(Items.IRON_INGOT, 4), new ItemStack(Items.IRON_BOOTS));
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.IRON_INGOT), new ItemStack(Items.FLINT, 9));
+
+
+        /*鉄 錬金レシピ*/
+        GameRegistry.addRecipe(new ItemStack(Items.IRON_INGOT,1),
+                "FFF",
+                "FFF",
+                "FFF",
+                'F', new ItemStack(Items.FLINT)
+        );
+        GameRegistry.addRecipe(new ItemStack(Items.IRON_INGOT),
+                "GGG",
+                "GGG",
+                "GGG",
+                'G', new ItemStack(Blocks.GRAVEL)
+                );
 
         proxy.postInit(event);
     }
