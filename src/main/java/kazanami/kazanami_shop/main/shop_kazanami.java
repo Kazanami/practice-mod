@@ -135,6 +135,11 @@ public class shop_kazanami {
                 'B', new ItemStack(Blocks.IRON_BLOCK)
         );
         GameRegistry.addShapelessRecipe(new ItemStack(Items.IRON_INGOT, 3), new ItemStack(Items.BUCKET));
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.IRON_INGOT, 5), new ItemStack(Items.IRON_HELMET));
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.IRON_INGOT, 8), new ItemStack(Items.IRON_CHESTPLATE));
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.IRON_INGOT, 7), new ItemStack(Items.IRON_LEGGINGS));
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.IRON_INGOT, 4), new ItemStack(Items.IRON_BOOTS));
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.IRON_INGOT), new ItemStack(Items.FLINT, 9));
 
         proxy.postInit(event);
     }
