@@ -48,6 +48,7 @@ public class shop_kazanami {
     public static Item Seed_rice;
     public static Item Seed_soy;
     public static Item Seed_tomato;
+    public static Item Bauxi;
     /*
     アイテムID郡
     chinjufumod
@@ -59,12 +60,17 @@ public class shop_kazanami {
 	    item_seeds_rice 種籾
 	    item_seeds_soy 大豆
 	    item_seeds_tomato トマト
+	    item_bauxite ボーキサイト
+     */
+    /*バニラ小麦のたね
+    minecraft:
+        wheat_seeds
      */
 
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        logger = event.getModLog();
+        //logger = event.getModLog();
         proxy.preInit(event);
     }
 
@@ -95,6 +101,7 @@ public class shop_kazanami {
         //GameRegistry.addShapelessRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE, 1), new ItemStack(Items.IRON_INGOT, 3));
         if (Loader.isModLoaded("chinjufumod")){
             try{
+                logger.info("Loading Recipe...");
                 /*アイテム変数追加処理*/
                 this.Seed_corn = GameRegistry.findItem("chinjufumod", "item_seeds_corn");
                 this.Seed_cabbage = GameRegistry.findItem("chinjufumod", "item_seeds_cabage");
@@ -104,14 +111,65 @@ public class shop_kazanami {
                 this.Seed_soy = GameRegistry.findItem("chinjufumod", "item_seeds_soy");
                 this.Seed_spinach = GameRegistry.findItem("chinjufumod", "item_seeds_spinach");
                 this.Seed_tomato = GameRegistry.findItem("chinjufumod", "item_seeds_tomato");
+                this.Bauxi = GameRegistry.findItem("chinjufumod", "item_bauxite");
 
                 /*カスタムレシピ追加処理*/
-                GameRegistry.addRecipe(new ItemStack(this.Seed_corn, 64),
-                        "SSS",
+                GameRegistry.addRecipe(new ItemStack(this.Seed_corn),
+                        "B  ",
+                        " S ",
                         "   ",
-                        "   ",
-                        'S', new ItemStack(Items.BEETROOT_SEEDS, 1)
+                        'B', new ItemStack(this.Bauxi),
+                        'S', new ItemStack(Items.WHEAT_SEEDS)
                         );
+                GameRegistry.addRecipe(new ItemStack(this.Seed_cabbage),
+                        " B ",
+                        " S ",
+                        "   ",
+                        'B', new ItemStack(this.Bauxi),
+                        'S', new ItemStack(Items.WHEAT_SEEDS)
+                );
+                GameRegistry.addRecipe(new ItemStack(this.Seed_hakusai),
+                        "  B",
+                        " S ",
+                        "   ",
+                        'B', new ItemStack(this.Bauxi),
+                        'S', new ItemStack(Items.WHEAT_SEEDS)
+                );
+                GameRegistry.addRecipe(new ItemStack(this.Seed_onion),
+                        "   ",
+                        " SB",
+                        "   ",
+                        'B', new ItemStack(this.Bauxi),
+                        'S', new ItemStack(Items.WHEAT_SEEDS)
+                );
+                GameRegistry.addRecipe(new ItemStack(this.Seed_rice),
+                        "   ",
+                        " S ",
+                        "  B",
+                        'B', new ItemStack(this.Bauxi),
+                        'S', new ItemStack(Items.WHEAT_SEEDS)
+                );
+                GameRegistry.addRecipe(new ItemStack(this.Seed_soy),
+                        "   ",
+                        " S ",
+                        " B ",
+                        'B', new ItemStack(this.Bauxi),
+                        'S', new ItemStack(Items.WHEAT_SEEDS)
+                );
+                GameRegistry.addRecipe(new ItemStack(this.Seed_spinach),
+                        "   ",
+                        " S ",
+                        "B  ",
+                        'B', new ItemStack(this.Bauxi),
+                        'S', new ItemStack(Items.WHEAT_SEEDS)
+                );
+                GameRegistry.addRecipe(new ItemStack(this.Seed_tomato),
+                        "   ",
+                        "BS ",
+                        "   ",
+                        'B', new ItemStack(this.Bauxi),
+                        'S', new ItemStack(Items.WHEAT_SEEDS)
+                );
 
             }catch (Throwable t){
                 logger.warn("Faild to get Item of Chinjufu-mod");
