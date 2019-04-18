@@ -1,14 +1,12 @@
 package kazanami.kazanami_shop.main;
 
-import net.minecraft.block.Block;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemNameTag;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.*;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.fml.common.Loader;
+
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -19,6 +17,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
 
@@ -36,7 +35,7 @@ public class shop_kazanami {
     public static Logger logger = LogManager.getLogger("Kazanami Shop");
 
     //Minecraft Item
-    public static Item exp_bottle;
+    //public static Item exp_bottle;
 
     //Chinjuhu-mod Items
     //public static String GET_ITEM_MOD = "chinjuhumod";
@@ -81,37 +80,31 @@ public class shop_kazanami {
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-/*        NBTTagCompound nbt = new NBTTagCompound();
 
-        if (Loader.isModLoaded("shincolle")){
-           try{
-                this.Onnen_Item = Item.getByNameOrId("shincolle:Grudge");
-                logger.info(this.getNBTShareTag(Onnen_Item));
-                GameRegistry.addRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE, 5),
-                        "GGG",
-                        "   ",
-                        "   ",
-                        "G", this.Onnen_Item
-                );
-            }
-            catch(Throwable t){
-                logger.warn("Faild to get of Shincolle");
-            }
-        }*/
-        //GameRegistry.addShapelessRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE, 1), new ItemStack(Items.IRON_INGOT, 3));
         if (Loader.isModLoaded("chinjufumod")){
             try{
                 logger.info("Loading Recipe...");
                 /*アイテム変数追加処理*/
-                this.Seed_corn = GameRegistry.findItem("chinjufumod", "item_seeds_corn");
-                this.Seed_cabbage = GameRegistry.findItem("chinjufumod", "item_seeds_cabage");
-                this.Seed_hakusai = GameRegistry.findItem("chinjufumod", "item_seeds_hakusai");
-                this.Seed_onion = GameRegistry.findItem("chinjufumod", "item_seeds_onion");
-                this.Seed_rice = GameRegistry.findItem("chinjufumod", "item_seeds_rice");
-                this.Seed_soy = GameRegistry.findItem("chinjufumod", "item_seeds_soy");
-                this.Seed_spinach = GameRegistry.findItem("chinjufumod", "item_seeds_spinach");
-                this.Seed_tomato = GameRegistry.findItem("chinjufumod", "item_seeds_tomato");
-                this.Bauxi = GameRegistry.findItem("chinjufumod", "item_bauxite");
+                //this.Bauxi = GameRegistry.findItem("chinjufumod","item_bauxite");
+                //this.Seed_corn = GameRegistry.findItem("chinjufumod","item_seeds_corn");
+                //this.Seed_cabbage = GameRegistry.findItem("chinjufumod","item_seeds_cabbage");
+                //this.Seed_hakusai = GameRegistry.findItem("chinjufumod", "item_seeds_hakusai");
+                //this.Seed_onion = GameRegistry.findItem("chinjufumod", "item_seeds_onion");
+                //this.Seed_rice = GameRegistry.findItem("chinjufumod", "item_seeds_rice");
+                //this.Seed_soy = GameRegistry.findItem("chinjufumod", "item_seeds_soy");
+                //this.Seed_spinach = GameRegistry.findItem("chinjufumod", "item_seeds_spinach");
+                //this.Seed_tomato = GameRegistry.findItem("chinjufumod", "item_seeds_tomato");
+
+                this.Bauxi = Item.getByNameOrId("chinjufumod:item_bauxite");
+                this.Seed_corn = Item.getByNameOrId("chinjufumod:item_seeds_corn");
+                this.Seed_cabbage = Item.getByNameOrId("chinjufumod:item_seeds_cabbage");
+                this.Seed_hakusai = Item.getByNameOrId("chinjufumod:item_seeds_hakusai");
+                this.Seed_onion = Item.getByNameOrId("chinjufumod:item_seeds_onion");
+                this.Seed_rice = Item.getByNameOrId("chinjufumod:item_seeds_rice");
+                this.Seed_soy = Item.getByNameOrId("chinjufumod:item_seeds_soy");
+                this.Seed_spinach = Item.getByNameOrId("chinjufumod:item_seeds_spinach");
+                this.Seed_tomato = Item.getByNameOrId("chinjufumod:item_seeds_tomato");
+
 
                 /*カスタムレシピ追加処理*/
                 GameRegistry.addRecipe(new ItemStack(this.Seed_corn),
@@ -120,7 +113,8 @@ public class shop_kazanami {
                         "   ",
                         'B', new ItemStack(this.Bauxi),
                         'S', new ItemStack(Items.WHEAT_SEEDS)
-                        );
+                );
+
                 GameRegistry.addRecipe(new ItemStack(this.Seed_cabbage),
                         " B ",
                         " S ",
@@ -128,13 +122,15 @@ public class shop_kazanami {
                         'B', new ItemStack(this.Bauxi),
                         'S', new ItemStack(Items.WHEAT_SEEDS)
                 );
+
                 GameRegistry.addRecipe(new ItemStack(this.Seed_hakusai),
-                        "  B",
-                        " S ",
+                        "  S",
+                        " B ",
                         "   ",
                         'B', new ItemStack(this.Bauxi),
                         'S', new ItemStack(Items.WHEAT_SEEDS)
                 );
+
                 GameRegistry.addRecipe(new ItemStack(this.Seed_onion),
                         "   ",
                         " SB",
@@ -142,6 +138,7 @@ public class shop_kazanami {
                         'B', new ItemStack(this.Bauxi),
                         'S', new ItemStack(Items.WHEAT_SEEDS)
                 );
+
                 GameRegistry.addRecipe(new ItemStack(this.Seed_rice),
                         "   ",
                         " S ",
@@ -149,6 +146,7 @@ public class shop_kazanami {
                         'B', new ItemStack(this.Bauxi),
                         'S', new ItemStack(Items.WHEAT_SEEDS)
                 );
+
                 GameRegistry.addRecipe(new ItemStack(this.Seed_soy),
                         "   ",
                         " S ",
@@ -156,16 +154,18 @@ public class shop_kazanami {
                         'B', new ItemStack(this.Bauxi),
                         'S', new ItemStack(Items.WHEAT_SEEDS)
                 );
+
                 GameRegistry.addRecipe(new ItemStack(this.Seed_spinach),
                         "   ",
-                        " S ",
-                        "B  ",
+                        " B ",
+                        "S  ",
                         'B', new ItemStack(this.Bauxi),
                         'S', new ItemStack(Items.WHEAT_SEEDS)
                 );
+
                 GameRegistry.addRecipe(new ItemStack(this.Seed_tomato),
                         "   ",
-                        "BS ",
+                        "SB ",
                         "   ",
                         'B', new ItemStack(this.Bauxi),
                         'S', new ItemStack(Items.WHEAT_SEEDS)
@@ -203,7 +203,7 @@ public class shop_kazanami {
 
 
         /*鉄 錬金レシピ*/
-        GameRegistry.addRecipe(new ItemStack(Items.IRON_INGOT,1),
+        GameRegistry.addRecipe(new ItemStack(Items.IRON_INGOT),
                 "FFF",
                 "FFF",
                 "FFF",
