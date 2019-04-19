@@ -3,7 +3,7 @@
   "modid": "kazanamishop",
   "name": "Kazanami Shop",
   "description": "プレイヤーに驚異の錬金スキル(という建前の疑似取引)を追加します。",
-  "version": "1.0.0",
+  "version": "1.0.1 beta",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",

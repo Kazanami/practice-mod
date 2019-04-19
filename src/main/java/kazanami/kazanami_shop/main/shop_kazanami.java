@@ -5,6 +5,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.world.ChunkEvent;
 import net.minecraftforge.fml.common.Loader;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -48,6 +49,9 @@ public class shop_kazanami {
     public static Item Seed_soy;
     public static Item Seed_tomato;
     public static Item Bauxi;
+
+    public static Item shincolle_grudge;
+    public static Item shincolle_grudge2;
     /*
     アイテムID郡
     chinjufumod
@@ -174,8 +178,35 @@ public class shop_kazanami {
             }catch (Throwable t){
                 logger.warn("Faild to get Item of Chinjufu-mod");
             }finally{
-                logger.debug("Loaded Recipe");
+                logger.debug("Loaded Recipe in Chinjufu-mod");
             }
+        }
+        // Shincolle がロードされているか
+        if (Loader.isModLoaded("shincolle")){
+            try{
+                this.shincolle_grudge = Item.getByNameOrId("shincolle:Grudge");
+                //Shincolle アイテムを使用したトレードの追加 なおこれはテスト版
+                GameRegistry.addRecipe(new ItemStack(Items.WHEAT_SEEDS),
+                        "S  ",
+                        "   ",
+                        "   ",
+                        'S', new ItemStack(this.shincolle_grudge)
+                );
+
+                GameRegistry.addRecipe(new ItemStack(this.shincolle_grudge,1,1),
+                        " I ",
+                        "   ",
+                        "   ",
+                        'I', new ItemStack(Items.IRON_INGOT)
+                );
+
+            }catch (Throwable t){
+                logger.warn("Fiald to get Item of Shincolle-mod");
+            }finally {
+                logger.debug("Loaded Recipe in Shincolle-mod");
+                //logger.info((String) new ItemStack(this.shincolle_grudge).setItemDamage("1"));
+            }
+
         }
 
 
