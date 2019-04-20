@@ -1,6 +1,7 @@
 package kazanami.kazanami_shop.main;
 
 
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -224,15 +225,6 @@ public class shop_kazanami {
                         'H', new ItemStack(Blocks.COAL_BLOCK),
                         'K', new ItemStack(this.tf_cokeblock)
                 );
-
-                GameRegistry.addRecipe(new ItemStack(Items.NETHER_STAR),
-                        "IGI",
-                        "GDG",
-                        "IGI",
-                        'I', new ItemStack(Items.IRON_INGOT),
-                        'G', new ItemStack(Items.GOLD_INGOT),
-                        'D', new ItemStack(Items.DIAMOND)
-                );
             }catch (Throwable t){
                 logger.warn("Failed to get Item of TacticalFrame.");
             }finally {
@@ -243,18 +235,7 @@ public class shop_kazanami {
 
         /*最後に読み込ませる 鉄インゴット3から経験値瓶3*/
         //GameRegistry.addShapelessRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE,3), new ItemStack(Items.IRON_INGOT,3));
-        GameRegistry.addRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE, 3),
-                " I ",
-                "I I",
-                "   ",
-                'I', new ItemStack(Items.IRON_INGOT)
-        );
-        GameRegistry.addRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE, 20),
-                "B  ",
-                "B  ",
-                "   ",
-                'B', new ItemStack(Blocks.IRON_BLOCK)
-        );
+
 
         /*鉄防具 還元レシピ*/
         GameRegistry.addShapelessRecipe(new ItemStack(Items.IRON_INGOT, 3), new ItemStack(Items.BUCKET));
@@ -278,8 +259,29 @@ public class shop_kazanami {
                 'G', new ItemStack(Blocks.GRAVEL)
                 );
 
-        //GameRegistry.addRecipe(new ItemStack(Items.SKULL,1,1),
-        //        );
+        GameRegistry.addRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE, 3),
+                " I ",
+                "I I",
+                "   ",
+                'I', new ItemStack(Items.IRON_INGOT)
+        );
+
+        GameRegistry.addRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE, 20),
+                "B  ",
+                "B  ",
+                "   ",
+                'B', new ItemStack(Blocks.IRON_BLOCK)
+        );
+
+        GameRegistry.addRecipe(new ItemStack(Items.NETHER_STAR,1),
+                "IGI",
+                "GDG",
+                "IGI",
+                'I', new ItemStack(Items.IRON_INGOT),
+                'G', new ItemStack(Items.GOLD_INGOT),
+                'D', new ItemStack(Items.DIAMOND)
+        );
+
         proxy.postInit(event);
     }
 
