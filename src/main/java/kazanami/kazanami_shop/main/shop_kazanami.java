@@ -52,6 +52,8 @@ public class shop_kazanami {
 
     public static Item shincolle_grudge;
     public static Item shincolle_grudge2;
+
+    public static Item tf_cokeblock;
     /*
     アイテムID郡
     chinjufumod
@@ -69,7 +71,10 @@ public class shop_kazanami {
     minecraft:
         wheat_seeds
      */
-
+    /* TF
+        tf
+            cokeblock
+     */
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -209,6 +214,32 @@ public class shop_kazanami {
 
         }
 
+        if (Loader.isModLoaded("tf")){
+            try {
+                this.tf_cokeblock = Item.getByNameOrId("tf:cokeblock");
+                GameRegistry.addRecipe(new ItemStack(Items.SKULL,1,1),
+                        "HKH",
+                        "KHK",
+                        "HKH",
+                        'H', new ItemStack(Blocks.COAL_BLOCK),
+                        'K', new ItemStack(this.tf_cokeblock)
+                );
+
+                GameRegistry.addRecipe(new ItemStack(Items.NETHER_STAR),
+                        "IGI",
+                        "GDG",
+                        "IGI",
+                        'I', new ItemStack(Items.IRON_INGOT),
+                        'G', new ItemStack(Items.GOLD_INGOT),
+                        'D', new ItemStack(Items.DIAMOND)
+                );
+            }catch (Throwable t){
+                logger.warn("Failed to get Item of TacticalFrame.");
+            }finally {
+                logger.debug("Loaded Recipe");
+            }
+        }
+
 
         /*最後に読み込ませる 鉄インゴット3から経験値瓶3*/
         //GameRegistry.addShapelessRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE,3), new ItemStack(Items.IRON_INGOT,3));
@@ -247,6 +278,8 @@ public class shop_kazanami {
                 'G', new ItemStack(Blocks.GRAVEL)
                 );
 
+        //GameRegistry.addRecipe(new ItemStack(Items.SKULL,1,1),
+        //        );
         proxy.postInit(event);
     }
 
