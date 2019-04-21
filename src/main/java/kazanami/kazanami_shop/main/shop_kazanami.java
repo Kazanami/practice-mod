@@ -192,22 +192,16 @@ public class shop_kazanami {
             try{
                 this.shincolle_grudge = Item.getByNameOrId("shincolle:Grudge");
                 //Shincolle アイテムを使用したトレードの追加 なおこれはテスト版
-                GameRegistry.addRecipe(new ItemStack(Items.WHEAT_SEEDS),
-                        "S  ",
-                        "   ",
-                        "   ",
-                        'S', new ItemStack(this.shincolle_grudge)
-                );
 
-                GameRegistry.addRecipe(new ItemStack(this.shincolle_grudge,1,1),
+                GameRegistry.addRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE, 3),
                         " I ",
+                        "I I",
                         "   ",
-                        "   ",
-                        'I', new ItemStack(Items.IRON_INGOT)
+                        'I', new ItemStack(this.shincolle_grudge)
                 );
 
             }catch (Throwable t){
-                logger.warn("Fiald to get Item of Shincolle-mod");
+                logger.warn("Faild to get Item of Shincolle-mod");
             }finally {
                 logger.debug("Loaded Recipe in Shincolle-mod");
                 //logger.info((String) new ItemStack(this.shincolle_grudge).setItemDamage("1"));
@@ -235,53 +229,6 @@ public class shop_kazanami {
 
         /*最後に読み込ませる 鉄インゴット3から経験値瓶3*/
         //GameRegistry.addShapelessRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE,3), new ItemStack(Items.IRON_INGOT,3));
-
-
-        /*鉄防具 還元レシピ*/
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.IRON_INGOT, 3), new ItemStack(Items.BUCKET));
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.IRON_INGOT, 5), new ItemStack(Items.IRON_HELMET));
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.IRON_INGOT, 8), new ItemStack(Items.IRON_CHESTPLATE));
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.IRON_INGOT, 7), new ItemStack(Items.IRON_LEGGINGS));
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.IRON_INGOT, 4), new ItemStack(Items.IRON_BOOTS));
-
-
-        /*鉄 錬金レシピ*/
-        GameRegistry.addRecipe(new ItemStack(Items.IRON_INGOT),
-                "FFF",
-                "FFF",
-                "FFF",
-                'F', new ItemStack(Items.FLINT)
-        );
-        GameRegistry.addRecipe(new ItemStack(Items.IRON_INGOT),
-                "GGG",
-                "GGG",
-                "GGG",
-                'G', new ItemStack(Blocks.GRAVEL)
-                );
-
-        GameRegistry.addRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE, 3),
-                " I ",
-                "I I",
-                "   ",
-                'I', new ItemStack(Items.IRON_INGOT)
-        );
-
-        GameRegistry.addRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE, 20),
-                "B  ",
-                "B  ",
-                "   ",
-                'B', new ItemStack(Blocks.IRON_BLOCK)
-        );
-
-        GameRegistry.addRecipe(new ItemStack(Items.NETHER_STAR,1),
-                "IGI",
-                "GDG",
-                "IGI",
-                'I', new ItemStack(Items.IRON_INGOT),
-                'G', new ItemStack(Items.GOLD_INGOT),
-                'D', new ItemStack(Items.DIAMOND)
-        );
-
         proxy.postInit(event);
     }
 
