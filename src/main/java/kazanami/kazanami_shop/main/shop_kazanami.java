@@ -2,14 +2,21 @@ package kazanami.kazanami_shop.main;
 
 
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.world.ChunkEvent;
 import net.minecraftforge.fml.common.Loader;
 
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -50,11 +57,6 @@ public class shop_kazanami {
     public static Item Seed_soy;
     public static Item Seed_tomato;
     public static Item Bauxi;
-
-    public static Item shincolle_grudge;
-    public static Item shincolle_grudge2;
-
-    public static Item tf_cokeblock;
     /*
     アイテムID郡
     chinjufumod
@@ -68,6 +70,16 @@ public class shop_kazanami {
 	    item_seeds_tomato トマト
 	    item_bauxite ボーキサイト
      */
+
+    //Shincolle Items
+
+    public static Item shincolle_grudge;
+    public static Item shincolle_eggs;
+    public static Item shincolle_humer;
+    public static Item heavy_block;
+    public static Item tf_cokeblock;
+
+
     /*バニラ小麦のたね
     minecraft:
         wheat_seeds
@@ -76,7 +88,7 @@ public class shop_kazanami {
         tf
             cokeblock
      */
-
+    public static Item test_item;
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         //logger = event.getModLog();
@@ -85,6 +97,7 @@ public class shop_kazanami {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
+
         proxy.init(event);
     }
 
@@ -191,6 +204,9 @@ public class shop_kazanami {
         if (Loader.isModLoaded("shincolle")){
             try{
                 this.shincolle_grudge = Item.getByNameOrId("shincolle:Grudge");
+                this.shincolle_eggs = Item.getByNameOrId("shincolle:ShipSpawnEgg");
+                this.shincolle_humer = Item.getByNameOrId("shincolle:KaitaiHammer");
+                this.heavy_block = Item.getByNameOrId("shincolle:BlockGrudgeHeavy");
                 //Shincolle アイテムを使用したトレードの追加 なおこれはテスト版
 
                 GameRegistry.addRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE, 3),
@@ -198,6 +214,38 @@ public class shop_kazanami {
                         "I I",
                         "   ",
                         'I', new ItemStack(this.shincolle_grudge)
+                );
+
+                GameRegistry.addRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE, 3),
+                        " E ",
+                        "EHE",
+                        "   ",
+                        'E', new ItemStack(this.shincolle_eggs,1,1),
+                        'H', new ItemStack(this.shincolle_humer,1, OreDictionary.WILDCARD_VALUE)
+                );
+
+                GameRegistry.addRecipe(new ItemStack(this.shincolle_grudge,1,1),
+                        " O ",
+                        "OHO",
+                        " O ",
+                        'O', new ItemStack(this.shincolle_eggs,1,1),
+                        'H', new ItemStack(this.shincolle_humer, 1, OreDictionary.WILDCARD_VALUE)
+                );
+
+                GameRegistry.addRecipe(new ItemStack(Blocks.SOUL_SAND),
+                        "JJJ",
+                        "JDJ",
+                        "JJJ",
+                        'J', new ItemStack(this.shincolle_grudge,1,0),
+                        'D', new ItemStack(Blocks.DIRT)
+                );
+
+                GameRegistry.addRecipe(new ItemStack(Items.SKULL,1,1),
+                        "HKH",
+                        "KHK",
+                        "HKH",
+                        'H', new ItemStack(this.heavy_block),
+                        'K', new ItemStack(Blocks.SOUL_SAND)
                 );
 
             }catch (Throwable t){
@@ -225,7 +273,6 @@ public class shop_kazanami {
                 logger.debug("Loaded Recipe");
             }
         }
-
 
         /*最後に読み込ませる 鉄インゴット3から経験値瓶3*/
         //GameRegistry.addShapelessRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE,3), new ItemStack(Items.IRON_INGOT,3));
