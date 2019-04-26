@@ -216,14 +216,6 @@ public class shop_kazanami {
                         'I', new ItemStack(this.shincolle_grudge)
                 );
 
-                GameRegistry.addRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE, 3),
-                        " E ",
-                        "EHE",
-                        "   ",
-                        'E', new ItemStack(this.shincolle_eggs,1,1),
-                        'H', new ItemStack(this.shincolle_humer,1, OreDictionary.WILDCARD_VALUE)
-                );
-
                 GameRegistry.addRecipe(new ItemStack(this.shincolle_grudge,1,1),
                         " O ",
                         "OHO",
