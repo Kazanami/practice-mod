@@ -240,6 +240,15 @@ public class shop_kazanami {
                         'K', new ItemStack(Blocks.SOUL_SAND)
                 );
 
+                GameRegistry.addShapelessRecipe(
+                        new ItemStack(Items.BLAZE_POWDER,1),
+                        new ItemStack(this.shincolle_grudge,1,1),
+                        new ItemStack(this.shincolle_grudge,1,1),
+                        new ItemStack(this.shincolle_grudge,1,1),
+                        new ItemStack(Items.GUNPOWDER)
+                );
+                /*YOU FOUND SEACLET RECIPE!!*/
+
             }catch (Throwable t){
                 logger.warn("Faild to get Item of Shincolle-mod");
             }finally {
@@ -249,7 +258,7 @@ public class shop_kazanami {
 
         }
 
-        if (Loader.isModLoaded("tf")){
+        /*if (Loader.isModLoaded("tf")){
             try {
                 this.tf_cokeblock = Item.getByNameOrId("tf:cokeblock");
                 GameRegistry.addRecipe(new ItemStack(Items.SKULL,1,1),
@@ -265,9 +274,25 @@ public class shop_kazanami {
                 logger.debug("Loaded Recipe");
             }
         }
+        */
 
         /*最後に読み込ませる 鉄インゴット3から経験値瓶3*/
         //GameRegistry.addShapelessRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE,3), new ItemStack(Items.IRON_INGOT,3));
+
+        /*パウダー圧縮ロッド*/
+        GameRegistry.addShapelessRecipe(
+                new ItemStack(Items.BLAZE_ROD,1),
+                new ItemStack(Items.BLAZE_POWDER,1),
+                new ItemStack(Items.BLAZE_POWDER,1),
+                new ItemStack(Items.BLAZE_POWDER,1),
+                new ItemStack(Items.BLAZE_POWDER,1),
+                new ItemStack(Items.BLAZE_POWDER,1),
+                new ItemStack(Items.BLAZE_POWDER,1),
+                new ItemStack(Items.BLAZE_POWDER,1),
+                new ItemStack(Items.BLAZE_POWDER,1),
+                new ItemStack(Items.BLAZE_POWDER,1)
+        );
+
         proxy.postInit(event);
     }
 
