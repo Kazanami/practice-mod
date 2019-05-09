@@ -1,6 +1,7 @@
 package kazanami.kazanami_shop.main;
 
 
+import kazanami.kazanami_shop.event.RecipeRemover;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -8,6 +9,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.RecipesCrafting;
+import net.minecraft.item.crafting.RecipesTools;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
@@ -16,6 +22,7 @@ import net.minecraftforge.fml.common.Loader;
 
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -26,6 +33,10 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
+
+import java.util.Iterator;
+import java.util.List;
 
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
@@ -78,6 +89,11 @@ public class shop_kazanami {
     public static Item shincolle_humer;
     public static Item heavy_block;
     public static Item tf_cokeblock;
+    public static Item ring;
+    public static Item gyorai;
+    public static Item shuhou;
+    public static Item kansai;
+    public static Item ff;
 
 
     /*バニラ小麦のたね
@@ -104,6 +120,9 @@ public class shop_kazanami {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
 
+
+        RecipeRemover.removeRecipe("shincolle:MarriageRing");
+        logger.debug("Removed Recipe");
         if (Loader.isModLoaded("chinjufumod")){
             try{
                 logger.info("Loading Recipe...");
@@ -207,6 +226,11 @@ public class shop_kazanami {
                 this.shincolle_eggs = Item.getByNameOrId("shincolle:ShipSpawnEgg");
                 this.shincolle_humer = Item.getByNameOrId("shincolle:KaitaiHammer");
                 this.heavy_block = Item.getByNameOrId("shincolle:BlockGrudgeHeavy");
+                this.ring = Item.getByNameOrId("shincolle:MarriageRing");
+                this.gyorai = Item.getByNameOrId("shincolle:EquipTorpedo");
+                this.shuhou = Item.getByNameOrId("shincolle:EquipCannon");
+                this.kansai = Item.getByNameOrId("shincolle:EquipAirplane");
+                this.ff = Item.getByNameOrId("shincolle:InstantConMat");
                 //Shincolle アイテムを使用したトレードの追加 なおこれはテスト版
 
                 GameRegistry.addRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE, 3),
@@ -247,7 +271,31 @@ public class shop_kazanami {
                         new ItemStack(this.shincolle_grudge,1,1),
                         new ItemStack(Items.GUNPOWDER)
                 );
-                /*YOU FOUND SEACLET RECIPE!!*/
+
+                GameRegistry.addRecipe(
+                        new ItemStack(this.ring,1),
+                        "SES","S S","SSS",
+                        'E', new ItemStack(Blocks.DRAGON_EGG),
+                        'S', new ItemStack(Items.NETHER_STAR)
+                );
+                /* YOU FOUND SECRET RECIPE!!!*/
+                /* 見つかった… */
+                /* レ級のレシピだよ!! */
+                /* 風波さんに頼んでもらったんだ!! by レ級f*/
+
+                GameRegistry.addRecipe(
+                        new ItemStack(this.shincolle_eggs,1,17),
+                        "SFK",
+                        "LEP",
+                        "GGG",
+                        'S', new ItemStack(this.shuhou,1,10),
+                        'F', new ItemStack(this.shuhou, 1, 5),
+                        'K', new ItemStack(this.kansai,1,11),
+                        'L', new ItemStack(this.gyorai,1,3),
+                        'E', new ItemStack(Items.EGG,1),
+                        'P', new ItemStack(this.ff,3),
+                        'G', new ItemStack(this.shincolle_grudge,1,1)
+                );
 
             }catch (Throwable t){
                 logger.warn("Faild to get Item of Shincolle-mod");
@@ -291,6 +339,26 @@ public class shop_kazanami {
                 new ItemStack(Items.BLAZE_POWDER,1),
                 new ItemStack(Items.BLAZE_POWDER,1),
                 new ItemStack(Items.BLAZE_POWDER,1)
+        );
+
+        GameRegistry.addShapelessRecipe(
+                new ItemStack(Blocks.CHEST,4),
+                new ItemStack(Blocks.LOG,1,OreDictionary.WILDCARD_VALUE),
+                new ItemStack(Blocks.LOG,1,OreDictionary.WILDCARD_VALUE),
+                new ItemStack(Blocks.LOG,1,OreDictionary.WILDCARD_VALUE),
+                new ItemStack(Blocks.LOG,1,OreDictionary.WILDCARD_VALUE),
+                new ItemStack(Blocks.LOG,1,OreDictionary.WILDCARD_VALUE),
+                new ItemStack(Blocks.LOG,1,OreDictionary.WILDCARD_VALUE),
+                new ItemStack(Blocks.LOG,1,OreDictionary.WILDCARD_VALUE),
+                new ItemStack(Blocks.LOG,1,OreDictionary.WILDCARD_VALUE)
+        );
+
+        GameRegistry.addShapelessRecipe(
+                new ItemStack(Items.STICK,8),
+                new ItemStack(Blocks.LOG,1,OreDictionary.WILDCARD_VALUE),
+                new ItemStack(Blocks.LOG,1,OreDictionary.WILDCARD_VALUE),
+                new ItemStack(Blocks.LOG,1,OreDictionary.WILDCARD_VALUE),
+                new ItemStack(Blocks.LOG,1,OreDictionary.WILDCARD_VALUE)
         );
 
         proxy.postInit(event);
