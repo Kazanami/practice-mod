@@ -316,7 +316,7 @@ public class shop_kazanami {
 
                 GameRegistry.addShapelessRecipe(
                         new ItemStack(this.tf_rigin,1),
-                        new ItemStack(this.tf_workkit,
+                        new ItemStack(this.tf_workkit,1, OreDictionary.WILDCARD_VALUE),
                         new ItemStack(this.tf_rig,1),
                         new ItemStack(this.tf_sc,1),
                         new ItemStack(this.tf_sc,1),
