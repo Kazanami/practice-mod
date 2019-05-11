@@ -88,13 +88,12 @@ public class shop_kazanami {
     public static Item shincolle_eggs;
     public static Item shincolle_humer;
     public static Item heavy_block;
-    public static Item tf_cokeblock;
+    //public static Item tf_cokeblock;
     public static Item ring;
     public static Item gyorai;
     public static Item shuhou;
     public static Item kansai;
     public static Item ff;
-
 
     /*バニラ小麦のたね
     minecraft:
@@ -104,6 +103,12 @@ public class shop_kazanami {
         tf
             cokeblock
      */
+
+    public static Item tf_workkit;
+    public static Item tf_rig;
+    public static Item tf_sc;
+    public static Item tf_rigin;
+
     public static Item test_item;
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -121,7 +126,7 @@ public class shop_kazanami {
     public void postInit(FMLPostInitializationEvent event) {
 
 
-        RecipeRemover.removeRecipe("shincolle:MarriageRing");
+        //RecipeRemover.removeRecipe("shincolle:MarriageRing");
         logger.debug("Removed Recipe");
         if (Loader.isModLoaded("chinjufumod")){
             try{
@@ -272,12 +277,6 @@ public class shop_kazanami {
                         new ItemStack(Items.GUNPOWDER)
                 );
 
-                GameRegistry.addRecipe(
-                        new ItemStack(this.ring,1),
-                        "SES","S S","SSS",
-                        'E', new ItemStack(Blocks.DRAGON_EGG),
-                        'S', new ItemStack(Items.NETHER_STAR)
-                );
                 /* YOU FOUND SECRET RECIPE!!!*/
                 /* 見つかった… */
                 /* レ級のレシピだよ!! */
@@ -306,23 +305,32 @@ public class shop_kazanami {
 
         }
 
-        /*if (Loader.isModLoaded("tf")){
+        if (Loader.isModLoaded("tf")){
             try {
-                this.tf_cokeblock = Item.getByNameOrId("tf:cokeblock");
-                GameRegistry.addRecipe(new ItemStack(Items.SKULL,1,1),
-                        "HKH",
-                        "KHK",
-                        "HKH",
-                        'H', new ItemStack(Blocks.COAL_BLOCK),
-                        'K', new ItemStack(this.tf_cokeblock)
+                //this.tf_cokeblock = Item.getByNameOrId("tf:cokeblock");
+                this.tf_workkit = Item.getByNameOrId("tf:workkit");
+                this.tf_rig = Item.getByNameOrId("tf:rigidoplate");
+                this.tf_sc = Item.getByNameOrId("tf:scrap_large");
+                this.tf_rigin = Item.getByNameOrId("tf:rigidoingot");
+
+
+                GameRegistry.addShapelessRecipe(
+                        new ItemStack(this.tf_rigin,1),
+                        new ItemStack(this.tf_workkit,
+                        new ItemStack(this.tf_rig,1),
+                        new ItemStack(this.tf_sc,1),
+                        new ItemStack(this.tf_sc,1),
+                        new ItemStack(this.tf_sc,1),
+                        new ItemStack(this.tf_sc,1)
                 );
+
             }catch (Throwable t){
                 logger.warn("Failed to get Item of TacticalFrame.");
             }finally {
                 logger.debug("Loaded Recipe");
             }
         }
-        */
+
 
         /*最後に読み込ませる 鉄インゴット3から経験値瓶3*/
         //GameRegistry.addShapelessRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE,3), new ItemStack(Items.IRON_INGOT,3));
